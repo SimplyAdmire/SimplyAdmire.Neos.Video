@@ -1,0 +1,16 @@
+<div>
+	<f:if condition="{videos -> f:count()} > 0">
+		<f:then>
+			<video{videoAttributes->f:format.raw()}>
+				{sources -> f:format.raw()}
+			</video>
+		</f:then>
+		<f:else>
+			<iframe{iframeAttributes->f:format.raw()}></iframe>
+		</f:else>
+	</f:if>
+</div>
+
+<f:section name="source">
+	<source src="{src}" type="{mediaType}" />
+</f:section>

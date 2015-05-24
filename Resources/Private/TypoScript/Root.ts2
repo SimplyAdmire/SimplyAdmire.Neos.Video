@@ -1,0 +1,40 @@
+prototype(SimplyAdmire.Neos.Video:Video) < prototype(TYPO3.Neos:Content) {
+	iframeAttributes = TYPO3.TypoScript:Attributes {
+		allowfullscreen = TRUE
+		frameborder = '0'
+		width = ${q(node).property('width') > 0 ? q(node).property('width') : '100%'}
+		height = ${q(node).property('height') > 0 ? q(node).property('height') : '100%'}
+		src = ${node.properties.link}
+		src.@process.YouTubeEmbed = ${String.replace(value, 'https://www.youtube.com/watch?v=', 'https://www.youtube.com/embed/')}
+	}
+
+	videoAttributes = TYPO3.TypoScript:Attributes {
+		controls = TRUE
+		poster = TYPO3.TypoScript:ResourceUri {
+			resource = ${q(node).property('image').resource}
+		}
+		poster.@if.notEmpty = ${q(node).property('image')}
+		width = ${q(node).property('width') > 0 ? q(node).property('width') : '100%'}
+		height = ${q(node).property('height') > 0 ? q(node).property('height') : NULL}
+	}
+
+	sources = TYPO3.TypoScript:Collection {
+		collection = ${q(node).property('videos')}
+		itemName = 'source'
+
+		itemRenderer = TYPO3.TypoScript:Template {
+			templatePath = 'resource://SimplyAdmire.Neos.Video/Private/Templates/NodeTypes/Video.html'
+			sectionName = 'source'
+
+			src = TYPO3.TypoScript:ResourceUri {
+				resource = ${source.resource}
+			}
+			mediaType = ${source.resource.mediaType}
+			poster = TYPO3.TypoScript:ResourceUri {
+				resource = ${q(node).property('image').resource}
+			}
+			width = ${q(node).property('width') > 0 ? q(node).property('width') : '100%'}
+			height = ${q(node).property('height') > 0 ? q(node).property('height') : '100%'}
+		}
+	}
+}

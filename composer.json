@@ -1,0 +1,13 @@
+{
+	"name": "simplyadmire/neos-video",
+	"type": "typo3-flow-package",
+	"license": "MIT",
+	"require": {
+		"typo3/neos": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"SimplyAdmire\\Neos\\Video": "Classes"
+		}
+	}
+}
