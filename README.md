@@ -7,7 +7,7 @@ Current support:
 
 * Embed video in an iframe by giving a url
 * Automatically converts YouTube video web url to embed url
-* Upload a list serie of videos and embed it using a <video> tag
+* Upload a list serie of videos and embed it using a `<video>` tag
 * Poster image
  
 For feature requests / issues, please use the issue tracker.
